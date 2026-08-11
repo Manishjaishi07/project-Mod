@@ -22,13 +22,17 @@ st.set_page_config(
 
 @st.cache_resource
 def load_model():
-    model = joblib.load("svm_model.pkl")
-    scaler = joblib.load("scaler.pkl")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    model_path = os.path.join(base_dir, "svm_model.pkl")
+    scaler_path = os.path.join(base_dir, "scaler.pkl")
+
+    model = joblib.load(model_path)
+    scaler = joblib.load(scaler_path)
 
     return model, scaler
 
 model, scaler = load_model()
-
 
 # --------------------------------------------------
 # HEADER
